@@ -11,7 +11,6 @@ export enum TestProviderMetadata {
 }
 
 export class TestProvider extends TerraformProvider {
-  public alias?: string;
   public accessKey: string;
 
   constructor(scope: Construct, id: string, config: TestProviderConfig) {
@@ -23,7 +22,15 @@ export class TestProvider extends TerraformProvider {
     this.accessKey = config.accessKey
   }
 
-  public synthesizeAttributes(): { [name: string]: any } {
+  private _alias?: string;
+  public get alias() {
+    return this._alias;
+  }
+  public set alias(value: string | undefined) {
+    this._alias = value;
+  }
+
+  protected synthesizeAttributes(): { [name: string]: any } {
     return {
       // eslint-disable-next-line @typescript-eslint/camelcase
       access_key: this.accessKey

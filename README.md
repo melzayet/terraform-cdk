@@ -40,6 +40,7 @@ Choose a language:
 * [azure](./examples/typescript/azure)
 * [docker](./examples/typescript/docker)
 * [google](./examples/typescript/google)
+* [google-cloudrun](./examples/typescript/google-cloudrun)
 * [kubernetes](./examples/typescript/kubernetes)
 * [vault](./examples/typescript/vault)
 
@@ -53,6 +54,7 @@ Choose a language:
 ### Python
 
 * [aws](./examples/python/aws)
+* [aws-eks](./examples/python/aws-eks)
 * [docker](./examples/python/docker)
 * [kubernetes](./examples/python/kubernetes)
 
@@ -67,6 +69,7 @@ Choose a language:
 * Using the CDK for Terraform [tokens](./docs/working-with-cdk-for-terraform/tokens.md).
 * Using Terraform [data sources](./docs/working-with-cdk-for-terraform/data-sources.md).
 * Synthesizing Terraform configuration using CDK for Terraform [synthesize](./docs/working-with-cdk-for-terraform/synthesizing-config.md) command.
+* Project [telemetry](./docs/working-with-cdk-for-terraform/telemetry.md).
 
 ## Contributing and Feedback
 

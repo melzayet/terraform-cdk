@@ -26,6 +26,15 @@ export async function withTempDir(dirname: string, closure: () => Promise<void>)
   }
 }
 
+export async function mkdtemp(closure: (dir: string) => Promise<void>) {
+  const workdir = await fs.mkdtemp(path.join(os.tmpdir(), 'cdktf.'));
+  try {
+    await closure(workdir);
+  } finally {
+    await fs.remove(workdir);
+  }
+}
+
 async function get(url: string, protocol: typeof http | typeof https = https): Promise<string> {
   return new Promise((ok, ko) => {
     const req = protocol.get(url, res => {
@@ -69,4 +78,15 @@ export const exec = async (command: string, args: string[], options: SpawnOption
       return ok(Buffer.concat(out).toString('utf-8'));
     });
   });
+}
+
+export async function readCDKTFVersion(outputDir: string): Promise<string> {
+  const outputFile = path.join(outputDir, "cdk.tf.json");
+  if (fs.existsSync(outputFile)) {
+    const outputJSON = fs.readFileSync(outputFile, "utf8");
+    const data = JSON.parse(outputJSON);
+    return data["//"].metadata.version
+  }
+
+  return ""
 }
